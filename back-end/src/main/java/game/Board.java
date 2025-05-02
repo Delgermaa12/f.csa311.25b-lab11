@@ -1,28 +1,26 @@
 package game;
 
-import java.util.Arrays;
-import java.util.stream.Collectors;
-import java.util.stream.IntStream;
-
 public class Board {
-    private final Player[] cells;
+    private final Player[][] cells;
 
     public Board() {
-        this(IntStream.range(0, 9).mapToObj(i -> null)
-                .collect(Collectors.toList()).toArray(new Player[0]));
+        this.cells = new Player[3][3];
     }
 
-    public Board(Player[] cells) {
+    private Board(Player[][] cells) {
         this.cells = cells;
     }
 
     public Player getCell(int x, int y) {
-        return this.cells[y * 3 + x];
+        return this.cells[y][x];
     }
 
     public Board updateCell(int x, int y, Player player) {
-        Player[] newCells = Arrays.copyOf(this.cells, this.cells.length);
-        newCells[y * 3 + x] = player;
+        Player[][] newCells = new Player[3][3];
+        for (int row = 0; row < 3; row++)
+            for (int col = 0; col < 3; col++)
+                newCells[row][col] = this.cells[row][col];
+        newCells[y][x] = player;
         return new Board(newCells);
     }
 }
