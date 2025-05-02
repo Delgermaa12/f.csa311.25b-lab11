@@ -1,6 +1,5 @@
 package game;
 
-import java.util.Arrays;
 
 public class GameState {
     private final Cell[] cells;
@@ -26,15 +25,23 @@ public class GameState {
     }
 
     @Override
-    public String toString() {
-        return """
-                {
-                    "cells": %s,
-                    "currentPlayer": "%s",
-                    "winner": "%s"
-                }
-                """.formatted(Arrays.toString(this.cells), this.currentPlayer, this.winner);
+public String toString() {
+    StringBuilder cellsJson = new StringBuilder("[");
+    for (int i = 0; i < cells.length; i++) {
+        cellsJson.append(cells[i]);
+        if (i < cells.length - 1)
+            cellsJson.append(",");
     }
+    cellsJson.append("]");
+    return """
+            {
+                "cells": %s,
+                "currentPlayer": "%s",
+                "winner": "%s"
+            }
+            """.formatted(cellsJson.toString(), currentPlayer, winner);
+}
+
 
     /**
      * Inner class representing each cell of the board.

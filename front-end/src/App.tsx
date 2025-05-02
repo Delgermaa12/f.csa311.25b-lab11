@@ -33,6 +33,17 @@ class App extends React.Component<Props, GameState> {
     });
   }
 
+  undo = async () => {
+    const response = await fetch('/undo');
+    const json = await response.json();
+    this.setState({
+      cells: json['cells'],
+      currentPlayer: json['currentPlayer'],
+      winner: json['winner']
+    });
+  }
+  
+
   play(x: number, y: number): React.MouseEventHandler {
     return async (e) => {
       e.preventDefault();
@@ -84,9 +95,12 @@ class App extends React.Component<Props, GameState> {
           {this.state.cells.map((cell, i) => this.createCell(cell, i))}
         </div>
         <div id="bottombar">
-          <button onClick={this.newGame}>New Game</button>
-          <button>Undo</button>
-        </div>
+  <button onClick={this.newGame}>New Game</button>
+  <button onClick={this.undo} disabled={this.state.winner !== ''}>
+  Undo
+</button>
+
+</div>
       </div>
     );
   }

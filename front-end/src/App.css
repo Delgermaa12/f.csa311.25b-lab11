@@ -1,40 +1,83 @@
 #board {
   display: grid;
-  grid-template-columns: auto auto auto;
-  background-color: #2196F3;
-  padding: 10px
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  background-color: #1976D2;
+  padding: 20px;
+  border-radius: 15px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
 }
 
 .cell {
-  background-color: rgba(255, 255, 255, 0.8);
-  border: 1px solid rgba(0, 0, 0, 0.8);
-  padding: 20px;
-  font-size: 30px;
+  background-color: rgba(255, 255, 255, 0.95);
+  border: 2px solid #1976D2;
+  border-radius: 10px;
+  font-size: 4vmin;
   height: 25vmin;
+  width: 100%;
   text-align: center;
+  vertical-align: middle;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: default;
+  transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
-#bottombar {
-  height: 5vh;
+.cell.playable {
+  background-color: #FF7043;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.cell.playable:hover {
+  background-color: #FF5722;
+  transform: scale(1.05);
+}
+
+
+.cell:hover {
+  background-color: #BBDEFB;
+  transform: scale(1.05);
+}
+
+.playable {
+  background-color: #FF5252 !important;
+  color: white;
+  font-weight: bold;
 }
 
 #instructions {
   height: 5vh;
-  background-color: white;
-  padding: 0px;
-  margin: 0px;
+  background-color: #fff;
+  padding: 0;
+  margin: 0;
   text-align: center;
-  border: 1px solid black;
+  border: 1px solid #90CAF9;
+  border-radius: 5px;
+  font-size: 2vh;
+  line-height: 5vh;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+#bottombar {
+  height: 5vh;
+  display: flex;
 }
 
 #bottombar button {
-  width: 50%;
-  /* height: 100%; */
-  margin: 0;
-  padding: 0;
-  position: relative;
-  float: left;
-  font-size: 2vw
+  flex: 1;
+  font-size: 2vw;
+  background-color: #64B5F6;
+  color: white;
+  border: none;
+  transition: background-color 0.3s ease;
+  cursor: pointer;
+}
+
+#bottombar button:hover {
+  background-color: #42A5F5;
 }
 
 html,
@@ -42,6 +85,7 @@ body {
   height: 100%;
   margin: 0;
   padding: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #E3F2FD;
 }
 
-.playable { background-color: red;}
